@@ -1,11 +1,9 @@
+extern crate rand;
 
 use elementos::items::items::*;
 use elementos::proyectil::proyectil::*;
 
-mod elementos { 
-    pub mod items;
-    pub mod proyectil;
-    }
+pub mod elementos;
 
 fn main() {
     let mut my_item1 = Item::new();
@@ -26,6 +24,14 @@ fn main() {
     posicion.x += 150;
     my_item2.set_posicion(posicion);
 
-    my_item1.print_posicion();
-    my_item2.print_posicion();    
+    //my_item1.print_posicion();
+    my_item2.print_posicion();  
+
+    let mut my_proyectil = Proyectil::new();
+    let posicion_bala:Posicion = Posicion {x:100, y:100, z:100};
+    my_proyectil.set_posicion_actual(posicion_bala);
+
+    println!("{}", my_proyectil.get_posicion_actual().z);
+
+    println!("{}", my_item2.es_alcanzado(my_proyectil));  
 }

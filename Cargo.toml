@@ -3,9 +3,8 @@ name = "sniper"
 version = "0.1.0"
 authors = ["pablo <pablo.makoki@gmail.com>"]
 
-[[bin]]
-name="sniper"
-path="src/main.rs"
-
 [dependencies]
-chrono = "0.4"
+rand = "0.4.2"
+log = { version = "0.4", optional = true }
+serde = { version = "1", optional = true }
+serde_derive = { version = "1", optional = true }

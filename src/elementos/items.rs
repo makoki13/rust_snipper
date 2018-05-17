@@ -1,5 +1,11 @@
+extern crate rand;
 
 pub mod items {
+
+    use elementos::proyectil::proyectil::Proyectil;
+
+    use rand;
+
     pub struct Posicion {
         pub x: u32,
         pub y: u32,
@@ -13,8 +19,10 @@ pub mod items {
 
     impl Item {
         
-        pub fn new() -> Item {            
-            let nuevo_id:String = String::from("Hello, world!");
+        pub fn new() -> Item {        
+            let random_number:u32 = rand::random();
+            //let random_number: u8 = 20;
+            let nuevo_id:String = random_number.to_string();
             Item {
                 posicion: Posicion{x:0, y:0, z:0},
                 id: nuevo_id
@@ -22,10 +30,9 @@ pub mod items {
 
         }
 
-        pub fn _get_id(&self) -> String { 
-            let cadena:String = String::from("Hello, world!");
-            // let cadena:String = self.id; inexplicable error
-            return cadena;
+        pub fn _get_id(&self) -> String {             
+            let cadena = self.id.clone();
+            cadena
         }
 
         pub fn get_posicion(&self) -> Posicion {
@@ -34,7 +41,7 @@ pub mod items {
             pos.y = self.posicion.y;
             pos.z = self.posicion.z;
             pos.z = self.posicion.z;
-            return pos;
+            pos
         }
 
         pub fn set_posicion(&mut self, nueva_posicion: Posicion) {
@@ -43,7 +50,15 @@ pub mod items {
 
         pub fn print_posicion(&mut self) {
             println!("{},{},{}", self.posicion.x, self.posicion.y, self.posicion.z);
-        } 
+        }
+
+        /*
+         * Dado una trayectoria cada item debe de determinar si esa trayectoria se cruzó con él en ese momento
+         */ 
+        pub fn es_alcanzado(&mut self, proyectil: Proyectil) -> bool {
+            let resultado:bool = proyectil.get_posicion_actual().z > self.posicion.z;
+            resultado
+        }
     }
     
     
