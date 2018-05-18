@@ -1,11 +1,34 @@
 extern crate rand;
 
-use elementos::items::items::*;
-use elementos::proyectil::proyectil::*;
+//use elementos::items::items::*;
+//use elementos::proyectil::proyectil::*;
+
+use std::mem;
+use std::io;
+
+extern crate separator;
+
+use separator::Separatable;
 
 pub mod elementos;
 
 fn main() {
+
+    let dimension = 600;
+    let mundo: Vec<i32> = Vec::with_capacity(dimension * dimension * dimension);
+    
+    let tamanyo = mundo.capacity() * mem::size_of::<i32>();
+
+    println!("{}",mem::size_of::<i32>().separated_string());
+    println!("{} bytes reservados en memoria!!!",tamanyo.separated_string());
+
+    let mut input = String::new();
+
+    io::stdin().read_line(&mut input);
+
+
+    /*
+
     let mut my_item1 = Item::new();
     let id = my_item1._get_id();
     println!("{}",id);
@@ -34,4 +57,5 @@ fn main() {
     println!("{}", my_proyectil.get_posicion_actual().z);
 
     println!("{}", my_item2.es_alcanzado(my_proyectil));  
+    */
 }
